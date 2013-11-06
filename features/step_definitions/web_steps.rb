@@ -5,6 +5,12 @@ Given /^there is a user:$/ do |table|
 	end
 end
 
+Given /^there is an article:$/ do |table|
+	table.hashes.each do |attributes|
+		@article = FactoryGirl.create(:article, attributes.merge(user: @user))
+	end
+end
+
 Given /^I am on the homepage$/ do 
 	visit root_path
 end
