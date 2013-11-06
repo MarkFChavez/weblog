@@ -32,7 +32,8 @@
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </span>
           <% else %>
-              <%= link_to "Login", new_user_session_path %>
+              <%= link_to "Login", new_user_session_path %> 
+              <%= link_to "Register", new_user_registration_path %>
           <% end %>
         </div>
       </div>
@@ -41,13 +42,21 @@
 
       <% if notice %>
         <div class="row">
+<<<<<<< HEAD
           <div class="large-12 columns"> <span style="color:green"><%= notice %></span> </div>
+=======
+          <div class="large-12 columns"> <span style="color:green"><%= notice %></span></div>
+>>>>>>> feature/registration
         </div>
       <% end %>
 
       <% if alert %>
         <div class="row">
+<<<<<<< HEAD
           <div class="large-12 columns"> <span style="color:red"><%= alert %></span> </div>
+=======
+          <div class="large-12 columns"> <span style="color:red"><%= alert %></span></div>
+>>>>>>> feature/registration
         </div>
       <% end %>
 
