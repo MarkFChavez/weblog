@@ -3,5 +3,14 @@
 		<h4>Title: <%= @article.title %></h4>
 		<p> Posted by <%= @article.user.email %> </p>
 
+		<% if can? :manage, @article %>
+			<div>
+				<%= link_to "Edit this article", edit_article_path(@article) %>
+			</div>
+		<% end %>
+
+		<div>
+			<%= @article.content %>
+		</div>
 	</div>
 </div>

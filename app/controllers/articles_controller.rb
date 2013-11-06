@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+	load_and_authorize_resource
 	before_filter :authenticate_user!, except: :show
 
 	def show
@@ -16,6 +17,19 @@ class ArticlesController < ApplicationController
 			redirect_to root_path, notice: "Article created successfully"
 		else	
 			render :new
+		end
+	end
+
+	def edit
+		@article = Article.find(params[:id])
+	end
+
+	def update
+		@article = Article.find(params[:id])
+		if @article.update_attributes(params[:article])
+			redirect_to @article, notice: "Article updated successfully"
+		else
+			render :edit
 		end
 	end
 end
