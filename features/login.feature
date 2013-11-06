@@ -17,6 +17,13 @@ Feature: Login and Logout
 		Then I should see "Hi markchav3z@gmail.com"
 		And I should see "Logout"
 
+	Scenario: Login w/ invalid credentials
+		When I follow "Login" link
+		And I fill in "Email" with "markchav3z@gmail.com"
+		And I fill in "Password" with "invalidpassword"
+		And I follow "Sign in" button
+		Then I should see "Invalid email or password"
+
 	Scenario: Logging out
 		Given I am logged in
 		When I follow "Logout" link

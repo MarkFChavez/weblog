@@ -39,6 +39,18 @@
 
       <hr />
 
+      <% if notice %>
+        <div class="row">
+          <div class="large-12 columns"> <span style="color:green"><%= notice %></span> </div>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="row">
+          <div class="large-12 columns"> <span style="color:red"><%= alert %></span> </div>
+        </div>
+      <% end %>
+
       <%= yield %>
 
     
