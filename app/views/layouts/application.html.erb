@@ -32,12 +32,25 @@
               <%= link_to "Logout", destroy_user_session_path, method: :delete %>
             </span>
           <% else %>
-              <%= link_to "Login", new_user_session_path %>
+              <%= link_to "Login", new_user_session_path %> 
+              <%= link_to "Register", new_user_registration_path %>
           <% end %>
         </div>
       </div>
 
       <hr />
+
+      <% if notice %>
+        <div class="row">
+          <div class="large-12 columns"> <span style="color:green"><%= notice %></span></div>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="row">
+          <div class="large-12 columns"> <span style="color:red"><%= alert %></span></div>
+        </div>
+      <% end %>
 
       <%= yield %>
 
