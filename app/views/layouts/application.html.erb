@@ -25,14 +25,15 @@
     <div class="container">
       <div class="row">
         <div class="large-12 columns">
-          <h1>Weblog <small>ruby on rails demo</small></h1>
+          <h1><%= link_to "Weblog", root_path, style:"color:#000" %> <small>ruby on rails demo</small></h1>
           <% if user_signed_in? %>
             <span>
               Hi <%= current_user.email %> 
-              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+              <%= link_to "Edit Profile", edit_user_registration_path, class:"small button" %> 
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"small alert button" %>
             </span>
           <% else %>
-              <%= link_to "Login", new_user_session_path %> 
+              <%= link_to "Login", new_user_session_path %> or 
               <%= link_to "Register", new_user_registration_path %>
           <% end %>
         </div>
@@ -53,6 +54,14 @@
       <% end %>
 
       <%= yield %>
+
+      <div class="row" style="margin-top:20px">
+        <div class="large-12 columns">
+          
+        </div>
+      </div>
+
+    </div>
 
     
     <%= javascript_include_tag "application" %>

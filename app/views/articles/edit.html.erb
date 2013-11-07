@@ -19,11 +19,13 @@
 
 			<div>
 				<%= f.label :content %>
-				<%= f.text_area :content, rows: 5, cols: 5 %>
+				<%= f.text_area :content, style:"height:300px" %>
 			</div>
 
 			<div>
-				<%= f.submit "Update Article", class:"button" %>
+				<%= f.submit "Update Article", class:"button" %> 
+				or 
+				<%= link_to "Back to articles", root_path %>
 			</div>
 		<% end %>
 	</div>

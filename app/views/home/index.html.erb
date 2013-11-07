@@ -1,11 +1,12 @@
-
-<div class="row">
-	<div class="large-12 columns">
-		<% if user_signed_in? %>
-			<%= link_to "Create an article", new_article_path %>
-		<% end %>
+<% if user_signed_in? %>
+	<div class="row">
+		<div class="large-12 columns">
+			<%= link_to "Create an article", new_article_path, class:"small button" %>
+		</div>
 	</div>
-</div>
+
+	<hr />
+<% end %>
 
 <div class="row">
 	<div class="large-12 columns">

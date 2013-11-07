@@ -3,10 +3,10 @@
 		<h3>Create an Article</h3>
 
 		<% unless @article.errors.empty? %>
-			<h4><%= pluralize @article.errors.size, "error" %> found:</h4>
-			<ul style="margin-left:50px">
+			<h3><%= pluralize @article.errors.size, "error" %> found:</h3>
+			<ul style="margin-left:30px">
 			<% @article.errors.full_messages.each do |e| %>
-				<li><span style="color:red"><%= e %></span></li>
+				<li><span><%= e %></span></li>
 			<% end %>
 			</ul>
 		<% end %>
@@ -19,11 +19,13 @@
 
 			<div>
 				<%= f.label :content %>
-				<%= f.text_area :content, rows: 5, cols: 5 %>
+				<%= f.text_area :content, style:"height:300px" %>
 			</div>
 
 			<div>
-				<%= f.submit "Create Article", class:"button" %>
+				<%= f.submit "Create Article", class:"button" %> 
+				or 
+				<%= link_to "Back to articles", root_path %>
 			</div>
 		<% end %>
 	</div>

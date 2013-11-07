@@ -1,25 +1,59 @@
+<% if can? :manage, @article %>
+	<div class="row">
+		<div class="large-12 columns">
+			<div>
+				<%= link_to "Edit this article", edit_article_path(@article), class:"small button" %> 
+				<%= link_to "Remove this article", @article, method: :delete, confirm: "Remove this article?", class:"small alert button" %>
+			</div>
+		</div>
+	</div>
+
+	<hr />
+<% end %>
+
 <div class="row">
 	<div class="large-12 columns">
 		<h4>Title: <%= @article.title %></h4>
 		<p> Posted by <%= @article.user.email %> </p>
 
-		<% if can? :manage, @article %>
-			<div>
-				<%= link_to "Edit this article", edit_article_path(@article) %> 
-				<%= link_to "Remove this article", @article, method: :delete, confirm: "Remove this article?" %>
-			</div>
-		<% end %>
-
+		<div>
+			<%= markdown @article.content %>
+		</div>
 
 		<div>
-			<%= @article.content %>
+			<%= link_to "Back to articles", root_path %>
 		</div>
 	</div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-top:20px">
 	<div class="large-12 columns">
 		<h4>View <%= pluralize @article.comments.size, "comment" %></h4>
+		<div id="comments">
+			<% @article.comments.each do |comment| %>
+				<div class="comment">
+					<% if can? :destroy, comment %>
+							<%= link_to "remove comment", [@article, comment], method: :delete, class:"small alert button", style:"float:right", confirm:"Remove this comment?" %>
+					<% end %>
+					<p style="font-size:18px;float:left">
+						<%= g(comment.user) %> 
+					</p>
+					<p style="font-size:18px">
+						<%= comment.user.email %> <br />
+						<span style="font-size:15px">
+							<%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+						</span>
+					</p>
+					<div style="clear:both"></div>
+					<p><%= comment.message %></p>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="margin-top:20px">
+	<div class="large-12 columns">
 		<% if user_signed_in? %>
 			<%= form_for [@article, Comment.new] do |f| %>
 				<div>
@@ -35,22 +69,5 @@
 				<%= link_to "Sign in to add comments", new_user_session_path %>
 			</div>
 		<% end %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="large-12 columns">
-		<div id="comments">
-			<% @article.comments.each do |comment| %>
-				<div class="comment">
-					<h4><%= comment.user.email %> 
-						<% if can? :destroy, comment %>
-							<small><%= link_to "remove comment", [@article, comment], method: :delete %></small>
-						<% end %>
-					</h4>
-					<p><%= comment.message %></p>
-				</div>
-			<% end %>
-		</div>
 	</div>
 </div>
