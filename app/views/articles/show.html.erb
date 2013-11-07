@@ -5,9 +5,11 @@
 
 		<% if can? :manage, @article %>
 			<div>
-				<%= link_to "Edit this article", edit_article_path(@article) %>
+				<%= link_to "Edit this article", edit_article_path(@article) %> 
+				<%= link_to "Remove this article", @article, method: :delete, confirm: "Remove this article?" %>
 			</div>
 		<% end %>
+
 
 		<div>
 			<%= @article.content %>
