@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	load_and_authorize_resource
+	load_and_authorize_resource except: :show
 	before_filter :authenticate_user!, except: :show
 
 	def show
@@ -31,5 +31,12 @@ class ArticlesController < ApplicationController
 		else
 			render :edit
 		end
+	end
+
+	def destroy
+		@article = Article.find(params[:id])
+		@article.destroy
+		
+		redirect_to root_url, notice: "Article removed successfully"
 	end
 end
