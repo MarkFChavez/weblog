@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	load_and_authorize_resource except: :show
+	load_and_authorize_resource only: [:edit, :update, :destroy]
 	before_filter :authenticate_user!, except: :show
 
 	def show

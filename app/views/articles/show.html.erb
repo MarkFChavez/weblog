@@ -16,3 +16,37 @@
 		</div>
 	</div>
 </div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<h4>View <%= pluralize @article.comments.size, "comment" %></h4>
+		<% if user_signed_in? %>
+			<%= form_for [@article, Comment.new] do |f| %>
+				<div>
+					<%= f.text_area :message, rows: 5, cols: 5 %>
+				</div>
+
+				<div>
+					<%= f.submit "Add Comment", class:"button" %>
+				</div>
+			<% end %>
+		<% else %>
+			<div>
+				<%= link_to "Sign in to add comments", new_user_session_path %>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		<div id="comments">
+			<% @article.comments.each do |comment| %>
+				<div class="comment">
+					<h4><%= comment.user.email %></h4>
+					<p><%= comment.message %></p>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
