@@ -43,7 +43,11 @@
 		<div id="comments">
 			<% @article.comments.each do |comment| %>
 				<div class="comment">
-					<h4><%= comment.user.email %></h4>
+					<h4><%= comment.user.email %> 
+						<% if can? :destroy, comment %>
+							<small><%= link_to "remove comment", [@article, comment], method: :delete %></small>
+						<% end %>
+					</h4>
 					<p><%= comment.message %></p>
 				</div>
 			<% end %>

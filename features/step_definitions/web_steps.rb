@@ -11,6 +11,12 @@ Given /^there is an article:$/ do |table|
 	end
 end
 
+Given /^there is a comment:$/ do |table|
+	table.hashes.each do |attributes|
+		@comment = FactoryGirl.create(:comment, attributes.merge(user: @user, article: @article))
+	end
+end
+
 Given /^I am on the homepage$/ do 
 	visit root_path
 end
