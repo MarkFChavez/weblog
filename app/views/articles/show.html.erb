@@ -36,7 +36,11 @@
 							<%= link_to "remove comment", [@article, comment], method: :delete, class:"small alert button", style:"float:right", confirm:"Remove this comment?" %>
 					<% end %>
 					<p style="font-size:18px;float:left">
-						<%= g(comment.user) %> 
+						<% if comment.user.provider.present? %>
+							<%= image_tag comment.user.image %>
+						<% else %>
+							<%= g(comment.user) %>
+						<% end %>
 					</p>
 					<p style="font-size:18px">
 						<%= comment.user.email %> <br />

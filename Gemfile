@@ -27,6 +27,7 @@ gem 'devise'
 gem 'cancan'
 gem 'redcarpet'
 gem 'gravatar_image_tag'
+gem 'omniauth-facebook'
 
 # Gems used only for assets and not required
 # in production environments by default.
